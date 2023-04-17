@@ -4,19 +4,27 @@
 * In factor graph, the factors could be seen as the conditional probability in a bayes network. To maximize the posterior probability, is to maximize the product of these factors. Thus we are performing a maximum a-posteriori (MAP) inference.
 
 
+<center>
 
 ![alt text](Images/graph1.jpeg)
 
-**Figure 1 - Basic factor graph**
+<p align = "center"><b>Figure 1 - Basic factor graph</b></p>
+
+</center>
 
 
 * The above figure 1 shows a simple factor graph where X1, X2 And X3 represents the poses that are to be estimated. These are represented by variable nodes.
 * There are also 3 factors F1, F2, F3 assosciated with the graph. F1 represents the prior knowledge of the pose of the robot. F2 And F3 incoporate the odometry measurements between poses X1 - X2 and X2 - X3 respectively.
 * There are also 2 noise models here. The priorNoise which acts on the prior knowledge and odometryNoise assosciated with the odometry measurements.
 
+
+<center>
+
 ![alt text](Images/Factor_graph.png)
 
-**Figure 2 - Basic factor graph - estimated poses with uncertainty covariance ellipses**
+<p align = "center"><b>Figure 2 - Basic factor graph - estimated poses with uncertainty covariance ellipses</b></p>
+
+</center>
 
 * The above figure 2 plots the estimated poses with the uncertainty covariances as ellipse. It can be seen that as the number of actions or motion the system makes, the uncertainty ellipse continues to grow.
 * some of the important gtsam functions used here are:
@@ -31,24 +39,36 @@
 * gtsam.LevenbergMarquardtOptimizer(graph, initial: gtsam.Values()).optimize() - Non-linear graph is used due to the fact that non-linearity exists in odometry due to the orientation of the robot. The graph is optimized with the initial estimate from Values instance and the solution is stored in another instance of Values.
 - gtsam.Marginals(graph, result: gtsam.Values()).marginalCovariance(1) - can be used to retrive the covariance matrix of each variable.
 
+
+<center>
+
 ![alt text](Images/graph2.jpeg)
 
-**Figure 3 - PoseSLAM**
+<p align = "center"><b>Figure 3 - PoseSLAM</b></p>
+
+</center>
 
 * Figure 3 represents a factor graph where the robot makes 5 motions and reach back to pose 2 which is already visited. This acts as a loop closure constraint.
 * In real SLAM systems, we may need some sensors like camera or laser range finder to match the features in the environment to predict that it is revisiting the same place. Here we are manually stating that the final motion is from pose 5 to pose 2.
 
+<center>
+
 ![alt text](Images/pose_slam.png)
 
-**Figure 4 - PoseSLAM - estimated poses with uncertainty covariance ellipses**
+<p align = "center"><b>Figure 4 - PoseSLAM - estimated poses with uncertainty covariance ellipses</b></p>
+
+</center>
 
 * Here in Figure 4, we can see that the uncertainty ellipse of pose 5 is smaller than that of pose 4. This is due to the advantage of knowledge of the loop closure.
 
 
+<center>
 
 ![alt text](Images/graph3.jpeg)
 
-**Figure 5 - Landmark-based SLAM**
+<p align = "center"><b>Figure 5 - Landmark-based SLAM</b></p>
+
+</center>
 
 * Here in figure 5, the factor graph consists of 3 poses X1, X2, X3 and two landmarks L1 and L2. L1 is observed from X1 and X2 whereas L2 is observed only from X3. We are estimating the position of the landmark and the pose of the robot at the same time.
 * GTSAM functions that are required here are:
@@ -56,9 +76,15 @@
 * gtsam.Point2(x, y) - represents the 2D position of the landmark.
 
 
+
+
+<center>
+
 ![alt text](Images/landmark_based_slam.png)
 
-**Figure 6 - Landmark-based SLAM - estimated poses with uncertainty covariance ellipses**
+<p align = "center"><b>Figure 6 - Landmark-based SLAM - estimated poses with uncertainty covariance ellipses</b></p>
+
+</center>
 
 * In figure 6, the two blue ellipses indicate the uncertainty of landmarks L1 and L2. The uncertainty of L1 is less as compared to L2 because it is observed from 2 different poses. As the same landmark is observed from multiple poses, its uncertainty decreases.
 
