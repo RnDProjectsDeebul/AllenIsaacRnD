@@ -1,0 +1,6 @@
+[submodule "QuadricSLAM/source_code/QuadricSLAM"]
+	path = QuadricSLAM/source_code/QuadricSLAM
+	url = https://github.com/qcr/quadricslam.git
+[submodule "OASLAM/source_code/OASLAM"]
+	path = OASLAM/source_code/OASLAM
+	url = https://gitlab.inria.fr/tangram/oa-slam.git
