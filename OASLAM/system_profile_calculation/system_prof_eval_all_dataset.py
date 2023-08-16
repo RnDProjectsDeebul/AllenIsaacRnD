@@ -1,24 +1,28 @@
 """
 This script is used to record the system profile details such as
-average RAM and CPU usage for a enitre datasets in a folder.
+average RAM and CPU usage for all the datasets.
 
-This file has to be run within the conda environment in which the quadricslam is installed.
 
-change the script_path to the folder containing quadricslam_examples
-
-change the data_path to the folder containing all the datasets
-
-change the optimization mode to run in batch and in incremental mode
+The below command is used to run the oa-slam
+./oa-slam
+../Vocabulary/ORBvoc.txt -> vocabulary_file
+~/Desktop/BOP_dataset_oaslam/ycbv/test/camera_uw.yaml -> camera_file
+~/Desktop/BOP_dataset_oaslam/ycbv/test/000048/rgb/ -> path_to_image_sequence (.txt file listing the images or a folder with rgb.txt)
+~/Desktop/BOP_dataset_oaslam/ycbv/test/000048/detections_yolov5.json -> detections_file (.json file with detections or .onnx yolov5 weights)
+null -> categories_to_ignore_file (file containing the categories to ignore (one category_id per line))
+points+objects -> relocalization_mode ('points', 'objects' or 'points+objects')
+000048 -> output_name 
 
 run the code multiple times to get an accurate value
 
-And when running this code to monitor the system profile, comment out the ouput file
-generation in the quadricslam so that the time not spent on slam can be avoided.
+Need to change
+script_path -> path to the OA-SLAM files
+camera_file -> path to the camera intrinsics file
+data_path -> path to the dataset
 
 usage:
 
-conda activate quadricslam
-python3 system_system_prof_eval_all_dataset.py
+python3 system_prof_eval_all_dataset.py
 """
 
 import subprocess
@@ -26,10 +30,19 @@ import psutil
 import time
 import os
 
-# Script path is the main file that should be runned to execute the quadric slam
-script_path = '/home/allen/anaconda3/envs/quadricslamtest/lib/python3.10/site-packages/quadricslam_examples/BOP_YCB_dataset_test.py'
-# path to the folder containing the datasets
-data_path = '/home/allen/Desktop/BOP_dataset_quadricslam/ycbv/test/'
+# Script path is the main file that should be runned to execute the oa-slam
+script_path = '/home/allen/Desktop/OA_SLAM/oaslam/OA-SLAM/'
+bin_path = script_path + 'bin/oa-slam'
+orbvoc_path = script_path + 'Vocabulary/ORBvoc.txt'
+# path to the camera intrinsics file.
+camera_file = '/home/allen/Desktop/BOP_dataset_oaslam/ycbv/test/camera_uw.yaml'
+# path to the dataset folders
+data_path = '/home/allen/Desktop/BOP_dataset_oaslam/ycbv/test/'
+
+
+# change the current present working directory to identify files with relative paths
+os.chdir(script_path+'bin/')
+
 # extract all the dataset folder names
 datasets = []
 # Get a list of all items (files and directories) in the folder
@@ -40,9 +53,6 @@ directories.sort()
 for directory in directories:
     datasets.append(data_path + directory)
 
-# specify batch or incremental optimisaion
-batch_optimization = "True"
-
 
 # Initialize global variables for saving
 global_cpu_percent_list = []
@@ -50,12 +60,17 @@ global_ram_usage_list = []
 
 for i in range(len(datasets)):
 
+    rgb_path = datasets[i] + '/rgb/'
+    yolo_detection_path = datasets[i] + '/detections_yolov5.json'
+    output_name = os.path.basename(os.path.normpath(datasets[i]))
+
     # Initialize variables for monitoring
     cpu_percent_list = []
     ram_usage_list = []
 
     # Run the Python script with arguments in a subprocess
-    process_sub = subprocess.Popen(['python3', script_path, datasets[i], batch_optimization])
+    process_sub = subprocess.Popen([bin_path, orbvoc_path, camera_file, rgb_path, 
+                                    yolo_detection_path, 'null', 'points+objects', output_name])
     # Get the PID of the process
     process_pid = process_sub.pid
     # print(f"Process PID: {process_pid}")
@@ -94,14 +109,13 @@ for i in range(len(datasets)):
     cpu_percent_list = [value for index, value in enumerate(cpu_percent_list) if index not in indices_to_remove]
 
 
-    # save in the global variables
-    global_cpu_percent_list.append(cpu_percent_list)
-    global_ram_usage_list.append(ram_usage_list)
-
-
     # Calculate average CPU and RAM utilization
     average_cpu_utilization = sum(cpu_percent_list) / len(cpu_percent_list)
     average_ram_utilization = sum(ram_usage_list) / len(ram_usage_list)
+
+    # save in the global variables
+    global_cpu_percent_list.append(cpu_percent_list)
+    global_ram_usage_list.append(ram_usage_list)
 
     print(f"Dataset: {datasets[i]}")
     print(f"Process PID: {process_pid}")

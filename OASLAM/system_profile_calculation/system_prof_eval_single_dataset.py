@@ -2,43 +2,56 @@
 This script is used to record the system profile details such as
 average RAM and CPU usage for a single dataset.
 
-This file has to be run within the conda environment in which the quadricslam is installed.
 
-change the script_path to the folder containing quadricslam_examples
-
-change the data_path to the folder containing the particular dataset
-
-change the optimization mode to run in batch and in incremental mode
+The below command is used to run the oa-slam
+./oa-slam
+../Vocabulary/ORBvoc.txt -> vocabulary_file
+~/Desktop/BOP_dataset_oaslam/ycbv/test/camera_uw.yaml -> camera_file
+~/Desktop/BOP_dataset_oaslam/ycbv/test/000048/rgb/ -> path_to_image_sequence (.txt file listing the images or a folder with rgb.txt)
+~/Desktop/BOP_dataset_oaslam/ycbv/test/000048/detections_yolov5.json -> detections_file (.json file with detections or .onnx yolov5 weights)
+null -> categories_to_ignore_file (file containing the categories to ignore (one category_id per line))
+points+objects -> relocalization_mode ('points', 'objects' or 'points+objects')
+000048 -> output_name 
 
 run the code multiple times to get an accurate value
 
-And when running this code to monitor the system profile, comment out the ouput file
-generation in the quadricslam so that the time not spent on slam can be avoided.
+Need to change
+script_path -> path to the OA-SLAM files
+camera_file -> path to the camera intrinsics file
+data_path -> path to the dataset
 
 usage:
 
-conda activate quadricslam
 python3 system_prof_eval_single_dataset.py
 """
 
 import subprocess
 import psutil
 import time
+import os
 
-# Script path is the main file that should be runned to execute the quadric slam
-script_path = '/home/allen/anaconda3/envs/quadricslamtest/lib/python3.10/site-packages/quadricslam_examples/BOP_YCB_dataset_test.py'
+# Script path is the main file that should be runned to execute the oa-slam
+script_path = '/home/allen/Desktop/OA_SLAM/oaslam/OA-SLAM/'
+bin_path = script_path + 'bin/oa-slam'
+orbvoc_path = script_path + 'Vocabulary/ORBvoc.txt'
+# path to the camera intrinsics file.
+camera_file = '/home/allen/Desktop/BOP_dataset_oaslam/ycbv/test/camera_uw.yaml'
 # path to the dataset folders
-data_path = '/home/allen/Desktop/BOP_dataset_quadricslam/ycbv/test/000048'
-# specify batch or incremental optimisaion
-batch_optimization = "True"
+data_path = '/home/allen/Desktop/BOP_dataset_oaslam/ycbv/test/000048/'
+rgb_path = data_path + 'rgb/'
+yolo_detection_path = data_path + 'detections_yolov5.json'
+output_name = os.path.basename(os.path.normpath(data_path))
 
+# change the current present working directory to identify files with relative paths
+os.chdir(script_path+'bin/')
 
 # Initialize variables for monitoring
 cpu_percent_list = []
 ram_usage_list = []
 
 # Run the Python script with arguments in a subprocess
-process_sub = subprocess.Popen(['python3', script_path, data_path, batch_optimization])
+process_sub = subprocess.Popen([bin_path, orbvoc_path, camera_file, rgb_path, 
+                                yolo_detection_path, 'null', 'points+objects', output_name])
 # Get the PID of the process
 process_pid = process_sub.pid
 # print(f"Process PID: {process_pid}")
