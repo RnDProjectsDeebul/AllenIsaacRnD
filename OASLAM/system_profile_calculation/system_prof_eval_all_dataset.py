@@ -29,15 +29,43 @@ import subprocess
 import psutil
 import time
 import os
+import shutil
+
+def copy_folder_contents(source_folder, destination_path):
+    try:
+        # Check if the source folder exists
+        if not os.path.exists(source_folder):
+            print("Source folder does not exist.")
+            return
+
+        # Create the destination folder if it doesn't exist
+        os.makedirs(destination_path, exist_ok=True)
+
+        # Loop through each item in the source folder
+        for item in os.listdir(source_folder):
+            source_item_path = os.path.join(source_folder, item)
+            destination_item_path = os.path.join(destination_path, item)
+
+            # If the item is a file, copy it to the destination
+            if os.path.isfile(source_item_path):
+                shutil.copy2(source_item_path, destination_item_path)
+            # If the item is a folder, recursively copy its contents
+            elif os.path.isdir(source_item_path):
+                shutil.copytree(source_item_path, destination_item_path)
+
+        print("Contents copied successfully.")
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 # Script path is the main file that should be runned to execute the oa-slam
 script_path = '/home/allen/Desktop/OA_SLAM/oaslam/OA-SLAM/'
 bin_path = script_path + 'bin/oa-slam'
 orbvoc_path = script_path + 'Vocabulary/ORBvoc.txt'
 # path to the camera intrinsics file.
-camera_file = '/home/allen/Desktop/BOP_dataset_oaslam/ycbv/test/camera_uw.yaml'
+camera_file = '/home/allen/Desktop/RnD_Github/AllenIsaacRnD/dataset/camera_uw.yaml'
 # path to the dataset folders
-data_path = '/home/allen/Desktop/BOP_dataset_oaslam/ycbv/test/'
+data_path = '/home/allen/Desktop/RnD_Github/AllenIsaacRnD/dataset/'
 
 
 # change the current present working directory to identify files with relative paths
@@ -124,3 +152,6 @@ for i in range(len(datasets)):
     print(f"Average RAM Utilization: {average_ram_utilization:.2f} MB")
     print("Min and Max RAM Utilization: ", min(ram_usage_list), max(ram_usage_list))
     print(f"Total Execution Time: {execution_time:.2f} seconds")
+    
+    # copy contents of the folder
+    copy_folder_contents('./' + output_name, datasets[i] + '/oa_slam_result/')
