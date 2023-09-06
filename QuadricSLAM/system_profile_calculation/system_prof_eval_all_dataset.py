@@ -41,7 +41,7 @@ for directory in directories:
     datasets.append(data_path + directory)
 
 # specify batch or incremental optimisaion
-batch_optimization = "True"
+batch_optimization = "False"
 
 
 # Initialize global variables for saving
