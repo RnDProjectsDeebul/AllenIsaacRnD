@@ -63,7 +63,7 @@ script_path = '/home/allen/Desktop/OA_SLAM/oaslam/OA-SLAM/'
 bin_path = script_path + 'bin/oa-slam'
 orbvoc_path = script_path + 'Vocabulary/ORBvoc.txt'
 # path to the camera intrinsics file.
-camera_file = '/home/allen/Desktop/RnD_Github/AllenIsaacRnD/dataset/camera_uw.yaml'
+camera_file = '/home/allen/Desktop/RnD_Github/AllenIsaacRnD/dataset/camera_simulator.yaml'
 # path to the dataset folders
 data_path = '/home/allen/Desktop/RnD_Github/AllenIsaacRnD/dataset/'
 

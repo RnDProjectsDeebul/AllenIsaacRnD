@@ -29,7 +29,7 @@ import os
 # Script path is the main file that should be runned to execute the quadric slam
 script_path = '/home/allen/anaconda3/envs/quadricslamtest/lib/python3.10/site-packages/quadricslam_examples/BOP_YCB_dataset_test.py'
 # path to the folder containing the datasets
-data_path = '/home/allen/Desktop/BOP_dataset_quadricslam/ycbv/test/'
+data_path = '/home/allen/Desktop/RnD_Github/AllenIsaacRnD/dataset/'
 # extract all the dataset folder names
 datasets = []
 # Get a list of all items (files and directories) in the folder
