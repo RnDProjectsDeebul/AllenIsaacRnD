@@ -18,7 +18,7 @@ generation in the quadricslam so that the time not spent on slam can be avoided.
 usage:
 
 conda activate quadricslam
-python3 system_system_prof_eval_all_dataset.py
+python3 system_prof_eval_all_dataset.py
 """
 
 import subprocess
