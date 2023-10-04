@@ -20,6 +20,8 @@ script_path -> path to the OA-SLAM files
 camera_file -> path to the camera intrinsics file
 data_path -> path to the dataset
 
+/home/allen/Desktop/OA_SLAM/oaslam/OA-SLAM/bin/oa-slam /home/allen/Desktop/OA_SLAM/oaslam/OA-SLAM/Vocabulary/ORBvoc.txt /home/allen/Desktop/RnD_Github/AllenIsaacRnD/dataset/camera_simulator.yaml /home/allen/Desktop/RnD_Github/AllenIsaacRnD/dataset/000001/rgb/ /home/allen/Desktop/RnD_Github/AllenIsaacRnD/dataset/000001/detections_yolov5.json null points+objects scene1
+
 usage:
 
 python3 system_prof_eval_single_dataset.py
