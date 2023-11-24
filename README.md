@@ -14,8 +14,6 @@ SLAM is employed to construct an environmental map, incorporating both spatial a
 
 <p align="center">
   <img 
-    width="250"
-    height="250"
     src="readme_images/sample_scene.png"
   >
 </p>
@@ -24,8 +22,6 @@ SLAM is employed to construct an environmental map, incorporating both spatial a
 
 <p align="center">
   <img 
-    width="250"
-    height="250"
     src="readme_images/ground_truth.png"
   >
 </p>
@@ -33,8 +29,8 @@ SLAM is employed to construct an environmental map, incorporating both spatial a
 * The estimated camera trajectory is compared to the ground truth(left image) and estimated object pose is compared to ground truth(right image) based on certain metrics. The estimated object is plotted as ellipsoid.
 
 <p style="text-align: center;">
-  <img src="readme_images/est_traj.png" width="250" />
-  <img src="readme_images/est_obj.png" width="250" />
+  <img src="readme_images/est_traj.png" width="500" />
+  <img src="readme_images/est_obj.png" width="500" />
 </p>
 
 
