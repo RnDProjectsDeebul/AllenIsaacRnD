@@ -1,0 +1,59 @@
+{
+    "output_path": "",
+    
+    "dataset_name": "ycb",
+
+    "Num_images_per_class" : 100,
+
+    "render_parameters": {
+        "device": "GPU",
+        "render_engine": "CYCLES",
+        "res_x": "96",
+        "res_y": "96",
+        "num_samples": "100"
+    },
+
+    "Parameters": {
+        "random_rotation_object": "False",
+        "random_placement_object":"False",
+        "random_color": "False",
+        "random_textures": "False"
+    },
+
+    "Test_cases": {
+        "normal_training":{
+
+            "condition":"False",
+
+            "light_parameters":{
+                "random_lighting": "True",
+                "min_value":"2",
+                "max_value":"4"
+            },
+            "distance_parameters":{
+                "random_distance": "True",
+                "min_value":"-32",
+                "max_value":"-40"
+            }
+        },
+        "lighting": {
+
+            "condition": "False",
+            "min_value": "0.3",
+            "max_value": "15"},
+        
+        "distance": {
+            
+            "condition": "True",
+            "min_value": "-10",
+            "max_value": "-50"},
+
+        "blur":{
+            
+            "condition":"True",
+            
+            "min_value": "0.05",
+            "max_value":"0.4"
+        }
+    }
+}

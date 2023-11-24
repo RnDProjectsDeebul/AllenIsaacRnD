@@ -3,3 +3,4 @@ dataset/*
 localization/*
 noisy_bounding_box_experiment/*
 .ipynb_checkpoints/
+.vscode/

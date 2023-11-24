@@ -32,6 +32,13 @@ SLAM is employed to construct an environmental map, incorporating both spatial a
 | :---------------------: | :---------------------: |
 
 
+* The localization experiment with only half the scene mapped shows ability to relocalize using the object anchors via pnp pose estimation method using a single query RGB image from the unmapped region. Blue arrow is the expected pose and red is the predicted pose along with the green camera frame frustum.
+
+<p align="center">
+  <img 
+    src="readme_images/localization.png"
+  >
+</p>
 
 ## Usage
 

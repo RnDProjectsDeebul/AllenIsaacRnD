@@ -1,0 +1,68 @@
+{
+    "output_path" : "/path/to/save/generated/datasets/",
+    "textures_path": "/path/for/image_textures/folder/",
+    "Num_images_per_class": 10,
+    "render_parameters":{
+        "device":"GPU",
+        "res_x":"96",
+        "res_y":"96",
+        "num_samples":"256"
+    },
+    "Parameters":{
+        "random_lighting":"True",
+        "random_rotation":"True",
+        "random_distance":"False",
+        "random_color":"False",
+        "random_textures" : "True"
+    },
+    "Test_cases":{
+        "bright_lighting":{
+            "condition":"False",
+            "min_value":"15",
+            "max_value":"25"
+        },
+        "dark_lighting":{
+            "condition":"False",
+            "min_value":"0.5",
+            "max_value":"1.0"
+        },
+        "normal_lighting":{
+            "condition":"False",
+            "min_value":"3",
+            "max_value":"8"
+        },
+        "near_distance":{
+            "condition":"True",
+            "min_value":"80",
+            "max_value":"110"
+        },
+        "far_distance":{
+            "condition":"True",
+            "min_value":"40",
+            "max_value":"55"
+        },
+        "normal_distance":{
+            "condition":"True",
+            "min_value":"58",
+            "max_value":"72"
+        },
+        "random_background_colors":{
+            "condition":"False"
+        },
+        "random_background_textures":{
+            "condition":"False"
+        },
+        "blur_images": {
+            "condition":"False"
+        },
+        "distractor_objects":{
+            "condition":"False"
+        },
+        "deformed_objects":{
+            "condition":"False"
+        },
+        "all_variations":{
+            "condition":"False"
+        }
+    }
+}
