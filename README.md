@@ -1,7 +1,7 @@
 # AllenIsaacRnD
 
 ![Primary language](https://img.shields.io/github/languages/top/RnDProjectsDeebul/AllenIsaacRnD)
-[![License](https://img.shields.io/github/license/RnDProjectsDeebul/AllenIsaacRnD)](./LICENSE.txt)
+[![License](https://img.shields.io/github/license/RnDProjectsDeebul/AllenIsaacRnD)](./LICENSE)
 
 # Semantic Mapping for Enhanced Localization in Indoor Environments
 
@@ -10,7 +10,7 @@ SLAM is employed to construct an environmental map, incorporating both spatial a
 
 ## Proposed approach
 
-* Below image shows a sample RGB image of the synthetic scene generated using blender. 5 YCB objects are placed in a scene and the camera moves around this scene. The background texture can also be changed for each scene generated.
+* The image below shows a sample RGB image of the synthetic scene generated using blender. 5 YCB objects are placed in a scene and the camera moves around this scene. The background texture can also be changed for each scene generated.
 
 <p align="center">
   <img 
@@ -18,7 +18,7 @@ SLAM is employed to construct an environmental map, incorporating both spatial a
   >
 </p>
 
-* The ground truth trajectory of camera and object's postion in a scene are plotted using matplotlib. Object's ground truth is represented using a cuboid.
+* The ground truth trajectory of the camera and object's position in a scene are plotted using matplotlib. The object's ground truth is represented using a cuboid.
 
 <p align="center">
   <img 
@@ -26,12 +26,10 @@ SLAM is employed to construct an environmental map, incorporating both spatial a
   >
 </p>
 
-* The estimated camera trajectory is compared to the ground truth(left image) and estimated object pose is compared to ground truth(right image) based on certain metrics. The estimated object is plotted as ellipsoid.
+* The estimated camera trajectory is compared to the ground truth(left image) and the estimated object pose is compared to the ground truth(right image) based on certain metrics. The estimated object is plotted as an ellipsoid.
 
-<p style="text-align: center;">
-  <img src="readme_images/est_traj.png" width="500" />
-  <img src="readme_images/est_obj.png" width="500" />
-</p>
+| ![Image 1](readme_images/est_traj.png) | ![Image 2](readme_images/est_obj.png) |
+| :---------------------: | :---------------------: |
 
 
 
