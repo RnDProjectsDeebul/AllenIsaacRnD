@@ -23,3 +23,9 @@ Blender based dataset generation using setting some fixed constraint and randomi
     * `detection_helper.place_objects_randomly(radius=0.17)` - the radius parameter can be changed to control the radius of circle on which the objects are placed equidistant.
     * `detection_helper.set_random_pbr_img_textures(textures_path=TEXTURES_DIR,obj_name=detection_helper.background_plane_name,scale=3.0)` - the scale parameter can be changed to control the scaling of the bacground image used.
     * `circle_points = detection_helper.get_circle_points(radius=1.2,location=[0.0,0.0,0.3],num_points=NUM_OF_IMAGES)` - the radius of the circle along which the camera moves, the location of camera(x,y,z) can be changed here. Only the Z value or the height of the camera is varied.
+
+5. Change the pwd to ```./src/``` and run
+```
+~/blender-3.6.2-linux-x64/blender -b -P object_detection_bop.py
+```
+which will start the blender in background and run the python script to generate the output scene in BOP format to ```./src/results/``` folder.
