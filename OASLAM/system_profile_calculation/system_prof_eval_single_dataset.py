@@ -67,7 +67,7 @@ orbvoc_path = script_path + 'Vocabulary/ORBvoc.txt'
 # path to the camera intrinsics file.
 camera_file = '/home/allen/Desktop/RnD_Github/AllenIsaacRnD/dataset/camera_simulator.yaml'
 # path to the dataset folders
-data_path = '/home/allen/Desktop/RnD_Github/AllenIsaacRnD/dataset/000001/'
+data_path = '/home/allen/Desktop/RnD_Github/AllenIsaacRnD/dataset/000011/'
 rgb_path = data_path + 'rgb/'
 yolo_detection_path = data_path + 'detections_yolov5.json'
 output_name = os.path.basename(os.path.normpath(data_path))

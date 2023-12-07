@@ -1,6 +1,7 @@
 dataset/*
 !dataset/README.md
-localization/*
-noisy_bounding_box_experiment/*
+localization/test_scene/*
+noisy_bounding_box_experiment/noisy_scene/*
+Defense/
 .ipynb_checkpoints/
 .vscode/

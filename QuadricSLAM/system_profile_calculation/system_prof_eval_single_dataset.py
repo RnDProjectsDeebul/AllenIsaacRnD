@@ -28,9 +28,9 @@ import time
 # Script path is the main file that should be runned to execute the quadric slam
 script_path = '/home/allen/anaconda3/envs/quadricslamtest/lib/python3.10/site-packages/quadricslam_examples/BOP_YCB_dataset_test.py'
 # path to the dataset folders
-data_path = '/home/allen/Desktop/RnD_Github/AllenIsaacRnD/noisy_bounding_box_experiment/noisy_scene'
+data_path = '/home/allen/Desktop/RnD_Github/AllenIsaacRnD/dataset/000011'
 # specify batch or incremental optimisaion
-batch_optimization = "False"
+batch_optimization = "True"
 
 
 # Initialize variables for monitoring
